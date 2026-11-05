@@ -1,0 +1,3 @@
+application opened
+Login completed
+Logout completed
