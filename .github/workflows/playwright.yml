@@ -4,16 +4,13 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-    # Schedule workflow to run at 8:00 AM every day
-  schedule:
-    - cron: '0 8 * * *'
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
       with:
         node-version: lts/*
     - name: Install dependencies
@@ -22,7 +19,7 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
